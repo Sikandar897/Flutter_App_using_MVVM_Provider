@@ -13,7 +13,7 @@ class Routes {
       return MaterialPageRoute(builder: (context)=> const HomeScreen());
 
       case RoutesName.login:
-      return MaterialPageRoute(builder: (context)=> const LoginScreen());
+      return MaterialPageRoute(builder: (context)=> const LoginView());
 
       default:
       return MaterialPageRoute(builder: (context)=> const Scaffold(
