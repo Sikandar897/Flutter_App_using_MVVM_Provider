@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_app/Utils/utils.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,10 +11,15 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
-          
+          FloatingActionButton(onPressed: (){
+
+            //Utils.toastMessage('No internet connection');
+            Utils.snackBar('oops No connection!', context);
+
+          },child: const Text('button'),) 
         ],
       ),
     );
