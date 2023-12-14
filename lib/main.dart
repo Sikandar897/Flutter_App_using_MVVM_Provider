@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_app/Utils/Routes/routes.dart';
 import 'package:mvvm_app/Utils/Routes/routes_name.dart';
+import 'package:mvvm_app/View_Model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -8,10 +10,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  // Multi Provider
+  // define models here 
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+      providers: [
+      ChangeNotifierProvider(create: (_)=> AuthViewModel())
+    ],
+    child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'APP',
       theme: ThemeData(
@@ -20,6 +28,7 @@ class MyApp extends StatelessWidget {
       ),
      initialRoute: RoutesName.login,
      onGenerateRoute: Routes.generateRoute,
+    ),
     );
   }
 }
