@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_app/Resources/Components/eleveted_button.dart';
 import 'package:mvvm_app/Utils/utils.dart';
+import 'package:mvvm_app/View_Model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -34,6 +36,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = Provider.of<AuthViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -95,6 +98,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               ElevetedButton(
               title: 'Login',
+              loading: authViewModel.loading,
               onPress: () {
                 if(emailController.text.isEmpty){
                   Utils.flashBarErrormessage('Please enter Email', context);
@@ -106,8 +110,13 @@ class _LoginViewState extends State<LoginView> {
                   Utils.flashBarErrormessage('Please enter 6 digit password', context);
                 }
                 else{
-                  // ignore: avoid_print
-                  print('API hit');
+                  Map data ={
+                    'email' : emailController.text.toString(),
+                    'password':passwordController.text.toString()
+                  };
+                 authViewModel.loginApi(data, context);
+                 // ignore: avoid_print
+                 print('API HIT');
                 }
               },
              )

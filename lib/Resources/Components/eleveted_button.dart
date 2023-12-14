@@ -27,7 +27,7 @@ class ElevetedButton extends StatelessWidget {
                         MaterialStatePropertyAll(AppColors.deepPurpleShade400),
                     elevation: const MaterialStatePropertyAll(21),
                   ),
-                  child: loading ? const CircleAvatar() : Text(
+                  child: loading ? const CircularProgressIndicator(color: AppColors.whiteColor,) : Text(
                     title,
                     style: const TextStyle(color:AppColors.whiteColor),
                   ));
