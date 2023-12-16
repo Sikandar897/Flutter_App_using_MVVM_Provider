@@ -22,7 +22,7 @@ Future<dynamic> loginAPi(dynamic data) async {
 
 //here is code for hitting Register Api
 
-Future<dynamic> registerAPi(dynamic data) async {
+Future<dynamic> signUpAPi(dynamic data) async {
   try{
     dynamic response = await apiServices.getPostApiResponse(AppUrl.registerUrl, data);
     return response;

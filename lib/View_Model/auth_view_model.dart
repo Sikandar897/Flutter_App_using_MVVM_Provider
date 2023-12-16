@@ -10,13 +10,25 @@ class AuthViewModel with ChangeNotifier {
   bool _loading = false;
   bool get loading => _loading;
 
+  bool _signUpLoading = false;
+  bool get signUpLoading => _signUpLoading;
+
+
   // method for loadiing
   setLoading(bool value) {
     _loading = value;
     notifyListeners();
   }
 
+  // method for SignUP loadiing
+  setSignUPLoading(bool value) {
+    _signUpLoading = value;
+    notifyListeners();
+  }
+
   final _myRepo = AuthRepository();
+
+  /* Here is code for hitting login Api*/
 
   Future<void> loginApi(dynamic data, BuildContext context) async {
     
@@ -37,4 +49,28 @@ class AuthViewModel with ChangeNotifier {
       }
     });
   }
+  
+
+  /* Here is code for hitting SingUp Api*/
+
+  Future<void> signUpApi(dynamic data, BuildContext context) async {
+    
+    setSignUPLoading(true); //when my api hit loading will appear
+
+    _myRepo.signUpAPi(data).then((value) {
+      setSignUPLoading(false); //when i get response loading will appear
+      Utils.flashBarErrormessage('SignUp Successfully', context);
+      Navigator.pushNamed(context, RoutesName.login);
+      if (kDebugMode) {
+        print(value.toString());
+      }
+    }).onError((error, stackTrace) {
+      setSignUPLoading(false); //when i got exception loading will appear
+      if (kDebugMode) {
+        Utils.flashBarErrormessage(error.toString(), context);
+        print(error.toString());
+      }
+    });
+  }
+
 }
