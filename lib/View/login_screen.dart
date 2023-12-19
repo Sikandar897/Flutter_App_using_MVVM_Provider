@@ -120,10 +120,12 @@ class _LoginViewState extends State<LoginView> {
                       Utils.flashBarErrormessage(
                           'Please enter 6 digit password', context);
                     } else {
+                      // 
                       Map data = {
-                        'email': emailController.text.toString(),
-                        'password': passwordController.text.toString()
+                        'email': 'eve.holt@reqres.in',
+                        'password': 'cityslicka'
                       };
+
                       authViewModel.loginApi(data, context);
                       // ignore: avoid_print
                       print('API HIT');

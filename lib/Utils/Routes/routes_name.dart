@@ -2,6 +2,9 @@
 
 class RoutesName{
 
+  //Splash Routes Name
+  static const String splash = 'splash_view';
+  
   //Accounts Routes Name
   static const String login = 'login_screen';
 
